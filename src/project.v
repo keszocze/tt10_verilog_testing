@@ -12,7 +12,7 @@ module tt_um_verilog_testing
     , input wire  ena // enable
     , input wire  clk // clock
     , input wire  rst_n // reset
-    );
+    ); // just a comment to trigger the github actions
   wire [23:0] result;
 
   assign result = {ui_in * uio_in,
