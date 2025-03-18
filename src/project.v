@@ -13,10 +13,19 @@ module tt_um_verilog_testing
     , input wire  clk // clock
     , input wire  rst_n // reset
     );
+  wire signed [7:0] c$case_alt;
+  wire [7:0] a1;
+  wire [15:0] a1_projection;
   wire [23:0] result;
 
-  assign result = {ui_in * uio_in,
-                   8'b00000000,   8'b00000000};
+  assign c$case_alt = $signed(a1);
+
+  assign a1_projection = (($unsigned((($signed((({(($unsigned(ui_in))),(8'b00000001)})))) * ($signed((({(($unsigned(uio_in))),(8'b00000010)}))))))));
+
+  assign a1 = a1_projection[15:8];
+
+  assign result = {c$case_alt,   8'b00000000,
+                   8'b00000000};
 
   assign uo_out = $signed(result[23:16]);
 
