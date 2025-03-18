@@ -3,25 +3,27 @@
 */
 `default_nettype none
 module tt_um_verilog_testing
-    (
-      input wire [7:0] ui_in
-    , output wire [7:0] uo_out
-    , input wire [7:0] uio_in
+    ( // Inputs
+      input wire signed [7:0] ui_in
+    , output wire signed [7:0] uo_out
+    , input wire signed [7:0] uio_in
     , output wire [7:0] uio_out
     , output wire [7:0] uio_oe
     , input wire  ena // enable
     , input wire  clk // clock
     , input wire  rst_n // reset
-    ); 
+    );
   wire [23:0] result;
 
   assign result = {ui_in * uio_in,
                    8'b00000000,   8'b00000000};
 
-  assign uo_out = result[23:16];
+  assign uo_out = $signed(result[23:16]);
 
   assign uio_out = result[15:8];
 
   assign uio_oe = result[7:0];
+
+
 endmodule
 
